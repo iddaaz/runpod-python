@@ -231,6 +231,18 @@ def terminate_pod(pod_id: str):
     run_graphql_query(pod_mutations.generate_pod_terminate_mutation(pod_id))
 
 
+def list_templates(is_myself: bool = True):
+    raw_response = run_graphql_query(
+        template_mutations.get_templates(is_myself)
+    )
+
+    if is_myself:
+        resp = raw_response["data"]["myself"]
+    else:
+        resp = raw_response["data"]
+
+    return resp["podTemplates"]
+
 def create_template(
     name: str,
     image_name: str,

@@ -9,6 +9,7 @@ from .api.ctl_commands import (
     create_endpoint,
     create_pod,
     create_template,
+    list_templates,
     delete_container_registry_auth,
     get_endpoints,
     get_gpu,

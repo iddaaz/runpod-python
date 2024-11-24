@@ -3,6 +3,84 @@
 # pylint: disable=too-many-arguments, too-many-branches
 
 
+def get_templates(is_myself: bool):
+    if is_myself:
+        return f"""
+        query getPodTemplates {{
+            myself {{
+                id
+                podTemplates {{
+                    advancedStart
+                    containerDiskInGb
+                    containerRegistryAuthId
+                    dockerArgs
+                    earned
+                    env {{
+                        key
+                        value
+                        __typename
+                    }}
+                    id
+                    imageName
+                    isPublic
+                    isRunpod
+                    isServerless
+                    name
+                    ports
+                    readme
+                    runtimeInMin
+                    startJupyter
+                    startScript
+                    startSsh
+                    volumeInGb
+                    volumeMountPath
+                    config
+                    category
+                    __typename
+                }}
+                referral {{
+                    code
+                    __typename
+                }}
+                __typename
+            }}
+        }}
+        """
+
+    return f"""
+    query getPodTemplates {{
+        podTemplates {{
+            advancedStart
+            containerDiskInGb
+            containerRegistryAuthId
+            dockerArgs
+            earned
+            env {{
+                key
+                value
+                __typename
+            }}
+            id
+            imageName
+            isPublic
+            isRunpod
+            isServerless
+            name
+            ports
+            readme
+            runtimeInMin
+            startJupyter
+            startScript
+            startSsh
+            volumeInGb
+            volumeMountPath
+            config
+            category
+            __typename
+        }}
+    }}
+    """
+
 def generate_pod_template(
     name: str,
     image_name: str,
